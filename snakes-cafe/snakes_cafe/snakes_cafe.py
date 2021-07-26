@@ -36,25 +36,25 @@ Unicorn Tears
 # Ordering items 
 ##
 Appetizers = {
-    'Wings': 0,
-    'Cookies': 0,
-    'Spring Rolls': 0,
+    'wings': 0,
+    'cookies': 0,
+    'spring rolls': 0,
 }
 Entrees = {
-    'Salmon': 0,
-    'Steak': 0,
-    'Meat Tornado': 0,
-    'A Literal Garden': 0,
+    'salmon': 0,
+    'steak': 0,
+    'meat tornado': 0,
+    'a literal garden': 0,
 }
 Desserts = {
-    'Ice Cream': 0,
-    'Cake': 0,
-    'Pie': 0,
+    'ice cream': 0,
+    'cake': 0,
+    'pie': 0,
 }
 Drinks = {
-    'Coffee': 0,
-    'Tea': 0,
-    'Unicorn Tears': 0,
+    'coffee': 0,
+    'tea': 0,
+    'unicorn tears': 0,
 }
 
 ##
@@ -71,42 +71,32 @@ menu = [Appetizers,Entrees,Desserts,Drinks]
 ##
 # start the functionality
 ##
-user_order_confirm = input('''
-***********************************
-**would you like to order? Y/N**
-***********************************
-''').lower()
-# make validation for user_order_confirm
 
-if user_order_confirm == 'y':
-    print(f'''
+
+##
+# start the function
+##
+print('''
 ***********************************
 ** What would you like to order? **
 ***********************************
 ''')
-while user_order_confirm != 'n' and user_order_confirm != 'quit':
-        item = input('>>>')
-        if item == 'quit':
-            break  
-# menu = [Appetizers,Entrees,Desserts,Drinks]
-        for menu_items in menu:
-            # print(menu_items.keys())
-            if item in menu_items.keys():
-                menu_items[item] += 1
-                print(f'** {menu_items[item]} of {item} item has been added to your meal **')
-                break
-            else:
-                print(f'enter avalid item thats includes on the menu items')
-                 
-else:
-    input('''
-**You did not order anything!**
-**To quit at any time, type "quit"**
-    ''')
+user_order = input('enter item name >>> ').lower()
+while user_order != 'quit':
+    flag = False
+    for menu_object in menu:
+        for object_key in menu_object.keys():
+            if object_key == user_order:
+                flag = True
+                menu_object[user_order]+=1
+                print(f'**{menu_object[user_order]} order of {user_order} have been added to your meal **')
+    if not flag:  
+        print('''
+        ** Your item is not in the menu for now **\n
+        ** we will add this soon to our menu **
+        ''')
 
-items_available = []
-for i in menu:
-   items_available.append(i.items())  
-print (f'''
-**Your Order Summary is \n {items_available}**
-''')
+    user_order=input('order another item >>>')
+    
+
+print(menu)
